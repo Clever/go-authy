@@ -254,7 +254,7 @@ func (authy *Authy) DoRequest(method string, path string, params url.Values) (*h
 }
 
 func (authy *Authy) buildURL(path string) string {
-	url := authy.BaseURL + "/" + path
+	url := authy.BaseURL + path
 
 	return url
 }
