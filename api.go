@@ -219,6 +219,18 @@ func (authy *Authy) CheckPhoneVerification(countryCode int, phoneNumber string, 
 	return NewPhoneVerificationCheck(response)
 }
 
+// CheckPhoneVerification checks the given verification code.
+func (authy *Authy) RemoveUser(id string, params url.Values) (*RemoveRequest, error) {
+	path := fmt.Sprintf("/protected/json/users/%s/remove", id)
+	response, err := authy.DoRequest("POST", path, params)
+	if err != nil {
+		return nil, err
+	}
+
+	defer response.Body.Close()
+	return NewRemoveRequest(response)
+}
+
 // DoRequest performs a HTTP request to the Authy API
 func (authy *Authy) DoRequest(method string, path string, params url.Values) (*http.Response, error) {
 	apiURL := authy.buildURL(path)
