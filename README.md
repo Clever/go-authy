@@ -73,6 +73,17 @@ user.Errors
 it returns a `map[string]string` explaining what went wrong with the request.
 
 
+## Removing a user from authy
+
+To remove a user from authy you only need the user id.
+
+```go
+removeRequest, err := authyAPI.RemoveUser("authy-id", url.Values{})
+```
+
+As always, you can use `removeRequest.Valid()` to verify that the user was removed.
+
+
 ## Verifying Tokens
 
 
